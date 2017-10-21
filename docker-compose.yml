@@ -1,0 +1,19 @@
+version: "3.2"
+services:
+  dynamodb:
+    image: marcosnils/dynamodb-local
+    command: [ -inMemory ]
+    ports: 
+      - "8000"
+
+  express-server:
+    image: node:8
+    working_dir: /usr/app
+    volumes:
+      - ./src/express-server:/usr/app
+      
+    command: bash -c "npm install && npm start"
+    ports: 
+      - "3000:3000"
+    environment:
+      - TS_NODE_CACHE_DIRECTORY=/tmp
