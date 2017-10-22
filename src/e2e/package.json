@@ -11,9 +11,11 @@
   "author": "Adam Babcock",
   "license": "MIT",
   "dependencies": {
+    "@types/async": "^2.0.44",
     "@types/chai": "^4.0.4",
     "@types/mocha": "^2.2.43",
     "@types/superagent": "^3.5.6",
+    "async": "^2.5.0",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
     "superagent": "^3.7.0",

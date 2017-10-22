@@ -1,17 +1,21 @@
 module SinatraServer
-    class App < Sinatra::Base
-      require 'sinatra'
+  class App < Sinatra::Base
+    require 'sinatra'
 
-        get '/hello' do
-            [
-                200,
-                {
-                    'Content-Type' => 'application/json'
-                },
-                {
-                    hello: 'world'
-                }.to_json
-            ]
-        end
+    get '/status' do
+      200
     end
+
+    get '/hello' do
+      [
+        200,
+        {
+          'Content-Type' => 'application/json'
+        },
+        {
+          hello: 'world'
+        }.to_json
+      ]
+    end
+  end
 end
