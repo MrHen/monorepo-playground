@@ -17,3 +17,15 @@ services:
       - "3000:3000"
     environment:
       - TS_NODE_CACHE_DIRECTORY=/tmp
+
+  e2e:
+    image: node:8
+    working_dir: /usr/app
+    volumes:
+      - ./src/e2e:/usr/app
+    command: bash -c "npm install && npm test"
+    links:
+      - express-server
+    environment:
+      - TS_NODE_CACHE_DIRECTORY=/tmp
+      - EXPRESS_SERVER_HOST=express-server
