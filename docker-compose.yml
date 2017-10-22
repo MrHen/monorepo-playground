@@ -3,7 +3,7 @@ services:
   dynamodb:
     image: marcosnils/dynamodb-local
     command: [ -inMemory ]
-    ports: 
+    ports:
       - "8000"
 
   express-server:
@@ -11,12 +11,22 @@ services:
     working_dir: /usr/app
     volumes:
       - ./src/express-server:/usr/app
-      
     command: bash -c "npm install && npm start"
-    ports: 
+    ports:
       - "3000:3000"
     environment:
       - TS_NODE_CACHE_DIRECTORY=/tmp
+    tty: true
+
+  sinatra-server:
+    image: ruby:2.4
+    working_dir: /usr/app
+    volumes:
+      - ./src/sinatra-server:/usr/app
+    command: bash -c "bundle install && bundle exec shotgun --server=thin --port=9292 --host=0.0.0.0 config.ru"
+    ports:
+      - "9292:9292"
+    tty: true
 
   e2e:
     image: node:8
@@ -26,6 +36,8 @@ services:
     command: bash -c "npm install && npm test"
     links:
       - express-server
+      - sinatra-server
     environment:
       - TS_NODE_CACHE_DIRECTORY=/tmp
       - EXPRESS_SERVER_HOST=express-server
+      - SINATRA_SERVER_HOST=sinatra-server
