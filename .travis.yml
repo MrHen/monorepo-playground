@@ -1,0 +1,7 @@
+language: generic
+
+services:
+  - docker
+
+script:
+  - docker-compose up --exit-code-from e2e e2e

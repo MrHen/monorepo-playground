@@ -1,0 +1,27 @@
+{
+  "name": "monorepo-playground-e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "jshint index.js lib/*.js test/*.js",
+    "test": "mocha --require ts-node/register *.spec.ts"
+  },
+  "author": "Adam Babcock",
+  "license": "MIT",
+  "dependencies": {
+    "@types/async": "^2.0.44",
+    "@types/chai": "^4.0.4",
+    "@types/lodash": "^4.14.80",
+    "@types/mocha": "^2.2.43",
+    "@types/superagent": "^3.5.6",
+    "async": "^2.5.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "superagent": "^3.7.0",
+    "tcp-ping": "^0.1.1",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.5.3"
+  }
+}
