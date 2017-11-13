@@ -1,10 +1,16 @@
 version: "3.2"
 services:
-  dynamodb:
-    image: marcosnils/dynamodb-local
-    command: [ -inMemory ]
+  django-server:
+    build: ./src/django-server/
     ports:
-      - "8000"
+        - "8000:8000"
+    working_dir: /usr/app
+    volumes:
+        - ./src/django-server:/usr/app
+    command: python3 manage.py runserver 0:8000
+    environment:
+      - SECRET_KEY=qo%)b!!w_yuf$k7w_-%k33utma@10-p%do9*2n3n1b(0+ok*e+
+    tty: true
 
   express-server:
     image: node:8
@@ -35,9 +41,11 @@ services:
       - ./src/e2e:/usr/app
     command: bash -c "npm install && npm test"
     links:
+      - django-server
       - express-server
       - sinatra-server
     environment:
       - TS_NODE_CACHE_DIRECTORY=/tmp
+      - DJANGO_SERVER_HOST=django-server
       - EXPRESS_SERVER_HOST=express-server
       - SINATRA_SERVER_HOST=sinatra-server
