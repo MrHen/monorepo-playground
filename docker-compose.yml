@@ -3,13 +3,14 @@ services:
   django-server:
     build: ./src/django-server/
     ports:
-        - "8000:8000"
+        - "8000"
     working_dir: /usr/app
     volumes:
         - ./src/django-server:/usr/app
     command: python3 manage.py runserver 0:8000
     environment:
-      - SECRET_KEY=qo%)b!!w_yuf$k7w_-%k33utma@10-p%do9*2n3n1b(0+ok*e+
+      - DEBUG=false
+      - SECRET_KEY=859a3dc54ede5dbf4f10d9fcb2ff23f0b0bf9a3bfc6f74e2456f1596d80db87af5da2be1bd4952f430e510656cddf3f4d115
     tty: true
 
   express-server:
@@ -19,7 +20,7 @@ services:
       - ./src/express-server:/usr/app
     command: bash -c "npm install && npm start"
     ports:
-      - "3000:3000"
+      - "3000"
     environment:
       - TS_NODE_CACHE_DIRECTORY=/tmp
     tty: true
@@ -31,7 +32,7 @@ services:
       - ./src/sinatra-server:/usr/app
     command: bash -c "bundle install && bundle exec shotgun --server=thin --port=9292 --host=0.0.0.0 config.ru"
     ports:
-      - "9292:9292"
+      - "9292"
     tty: true
 
   e2e:
