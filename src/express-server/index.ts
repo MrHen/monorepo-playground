@@ -1,16 +1,21 @@
-import * as express from 'express'
-var app = express()
+import app from './lib/app';
 
-app.get('/status', function (req, res) {
-  res.status(200).end();
-})
+app((err, result) => {
+  if (err) {
+    console.log('App error on start', err);
+    return;
+  }
 
-app.get('/hello', function (req, res) {
-  res.json({
-    'hello': 'world'
-  })
-})
+  if (!result) {
+    console.log('App did not start');
+    return;
+  }
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
-})
+  const {
+    app,
+    server,
+  } = result;
+
+  var address = server.address();
+  console.log(`App listening on: ${address.address}:${address.port}`);
+});

@@ -50,3 +50,4 @@ services:
       - DJANGO_SERVER_HOST=django-server
       - EXPRESS_SERVER_HOST=express-server
       - SINATRA_SERVER_HOST=sinatra-server
+    tty: true

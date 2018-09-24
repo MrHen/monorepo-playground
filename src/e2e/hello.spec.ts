@@ -9,6 +9,12 @@ import servers from './servers'
 
 describe('/hello', () => {
   _.forEach(servers, (config, name) => {
+    const testcase = `${name} should say hello`;
+    if (!config.supports.hello) {
+      it.skip(testcase);
+      return;
+    }
+
     it(`${name} should say hello`, (done) => {
       var protocol = config.protocol;
       var host = config.host;
