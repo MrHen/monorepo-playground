@@ -22,3 +22,5 @@ urlpatterns = [
     url(r'^hello$', views.hello),
     url(r'^status$', views.status),
 ]
+
+handler404 = 'django_server.views.not_found'

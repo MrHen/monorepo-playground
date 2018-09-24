@@ -29,6 +29,7 @@ describe('/hello', () => {
           .end((err, result) => {
               expect(err).to.not.exist;
               expect(result).to.exist;
+              expect(result.status).to.eql(200);
               expect(result.body).to.eql({
                   'hello': 'world'
               });

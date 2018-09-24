@@ -5,3 +5,6 @@ def hello(request):
 
 def status(request):
     return JsonResponse(None, safe=False)
+
+def not_found(request):
+    return JsonResponse({ 'message': 'ERROR_ROUTE_NOT_FOUND' }, status=404)
