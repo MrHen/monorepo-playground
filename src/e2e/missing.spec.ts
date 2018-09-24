@@ -7,10 +7,10 @@ import * as superagent from 'superagent';
 
 import servers from './servers'
 
-describe('/hello', () => {
+describe('/missing', () => {
   _.forEach(servers, (config, name) => {
-    const testcase = `${name} should say hello`;
-    if (!config.supports.hello) {
+    const testcase = `${name} should 404 on missing routes`;
+    if (!config.supports.missing) {
       it.skip(testcase);
       return;
     }
@@ -19,19 +19,18 @@ describe('/hello', () => {
       var protocol = config.protocol;
       var host = config.host;
       var port = config.port;
-      var route = 'hello'
+      var route = 'missing'
 
       var url = `${protocol}://${host}:${port}/${route}`
 
       superagent.get(url)
           .set('Accept', 'application/json')
-          .on('error', done)
           .end((err, result) => {
-              expect(err).to.not.exist;
+              expect(err).to.exist;
               expect(result).to.exist;
-              expect(result.status).to.eql(200);
+              expect(result.status).to.eql(404);
               expect(result.body).to.eql({
-                  'hello': 'world'
+                  'message': 'ERROR_ROUTE_NOT_FOUND',
               });
               done();
           });

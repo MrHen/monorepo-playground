@@ -8,6 +8,12 @@ import servers from './servers'
 before(function (done) {
   this.timeout(30000);
   async.auto({
+    'django-server': (cb) => {
+      wait({
+        host: servers['django-server'].host,
+        port: servers['django-server'].port
+      }, cb);
+    },
     'express-server': (cb) => {
       wait({
         host: servers['express-server'].host,
