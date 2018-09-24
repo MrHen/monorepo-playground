@@ -17,5 +17,17 @@ module SinatraServer
         }.to_json
       ]
     end
+
+    not_found do
+      [
+        404,
+        {
+          'Content-Type' => 'application/json'
+        },
+        {
+          message: 'ERROR_ROUTE_NOT_FOUND'
+        }.to_json
+      ]
+    end
   end
 end

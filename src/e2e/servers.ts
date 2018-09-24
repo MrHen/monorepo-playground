@@ -29,7 +29,7 @@ export default {
     supports: {
       hello: true,
       links: false,
-      missing: false,
+      missing: true,
     },
   }
 }
