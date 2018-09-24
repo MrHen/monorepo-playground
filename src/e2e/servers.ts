@@ -7,6 +7,7 @@ export default {
     supports: {
       hello: true,
       links: false,
+      missing: false,
     },
   },
   'express-server': {
@@ -17,6 +18,7 @@ export default {
     supports: {
       hello: true,
       links: true,
+      missing: true,
     },
   },
   'sinatra-server': {
@@ -27,6 +29,7 @@ export default {
     supports: {
       hello: true,
       links: false,
+      missing: false,
     },
   }
 }
