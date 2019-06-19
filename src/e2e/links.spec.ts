@@ -1,8 +1,6 @@
 import * as _ from 'lodash';
-import * as async from 'async';
 import { expect } from 'chai';
 import 'mocha';
-import * as tcpPing from 'tcp-ping';
 import * as superagent from 'superagent';
 
 import servers from './servers'
