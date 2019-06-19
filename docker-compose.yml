@@ -14,7 +14,7 @@ services:
     tty: true
 
   express-server:
-    image: node:8
+    image: node:10
     working_dir: /usr/app
     volumes:
       - ./src/express-server:/usr/app
@@ -33,6 +33,18 @@ services:
     command: bash -c "bundle install && bundle exec shotgun --server=thin --port=9292 --host=0.0.0.0 config.ru"
     ports:
       - "9292"
+    tty: true
+
+  react-antd-js-client:
+    image: node:10
+    working_dir: /usr/app
+    volumes:
+      - ./src/react-antd-js-client:/usr/app
+    command: bash -c "npm install && npm start"
+    ports:
+      - "3000"
+    links:
+      - express-server
     tty: true
 
   e2e:
