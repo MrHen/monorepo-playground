@@ -20,7 +20,7 @@ services:
       - ./src/express-server:/usr/app
     command: bash -c "npm install && npm start"
     ports:
-      - "3000"
+      - "3001:3000"
     environment:
       - TS_NODE_CACHE_DIRECTORY=/tmp
     tty: true
@@ -42,7 +42,7 @@ services:
       - ./src/react-antd-js-client:/usr/app
     command: bash -c "npm install && npm start"
     ports:
-      - "3000"
+      - "3000:3000"
     links:
       - express-server
     tty: true
