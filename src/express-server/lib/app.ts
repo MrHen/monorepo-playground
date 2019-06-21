@@ -1,5 +1,7 @@
+import * as _ from 'lodash';
 import * as async from 'async';
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 import * as express from 'express';
 import { Server } from 'http';
 
@@ -33,6 +35,23 @@ const appInit = (callback: (error: MaybeError, result?: Result) => void) => {
     'app': (cb: async.AsyncResultCallback<express.Express, MaybeError>) => {
       var app = express();
 
+      app.use(cors({
+        origin: (origin, corsCb) => {
+          // TODO: Move to config
+          if (_.startsWith(origin, 'http://0.0.0.0')) {
+            corsCb(null, true);
+            return;
+          }
+
+          // TODO: Find better way to detect tests
+          if (_.isUndefined(origin)) {
+            corsCb(null, true);
+            return;
+          }
+
+          corsCb(new Error('Not allowed by CORS'));
+        },
+      }));
       app.use(bodyParser.json());
       app.use(bodyParser.urlencoded({ extended: false }));
 
