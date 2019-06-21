@@ -33,6 +33,18 @@ router.post('/links', (req, res, next) => {
   });
 });
 
+router.get('/links', (req, res, next) => {
+  links.getLinks({}, (err, links) => {
+    if (err) {
+      return next(err);
+    }
+
+    res.send({
+      results: links,
+    });
+  });
+});
+
 // Resolve link -- should be given a fancy short domain like https://lin.ks/:linkId
 router.get('/links/:linkId', (req, res, next) => {
   links.getLink({

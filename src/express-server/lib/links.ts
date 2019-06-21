@@ -14,8 +14,12 @@ interface LinkIdResult {
   (error?: Error, linkId?: string): void;
 }
 
-interface LinkResult {
+interface LinkDetailResult {
   (error?: Error, link?: Link): void;
+}
+
+interface LinkListResult {
+  (error?: Error, links?: Link[]): void;
 }
 
 // TODO: Add real database
@@ -26,6 +30,7 @@ const link = {
   generateId: generateId,
   generateUniqueId: generateUniqueId,
   getLink: getLink,
+  getLinks: getLinks,
   putLink: putLink
 };
 
@@ -91,13 +96,13 @@ function generateUniqueId(
 // Create new link for given url
 function generateLink(
   { url }: { url: string },
-  callback: LinkResult,
+  callback: LinkDetailResult,
 ) {
   async.auto({
     'id': (cb: LinkIdResult) => {
       link.generateUniqueId(null, cb);
     },
-    'create': ['id', (results: { id: string }, cb: LinkResult) => {
+    'create': ['id', (results: { id: string }, cb: LinkDetailResult) => {
       const record = {
         linkId: results.id,
         url,
@@ -122,15 +127,19 @@ function getLink({
   linkId,
 }: {
   linkId: string,
-}, callback: LinkResult) {
+}, callback: LinkDetailResult) {
 
   // TODO: Handle missing link
   const record = memoryDb[linkId];
   callback(undefined, record);
 }
 
+function getLinks(options: {} = {}, callback: LinkListResult) {
+  callback(undefined, _.values(memoryDb));
+}
+
 // Save record to database (use generateLink in route)
-function putLink(record: Link, callback: LinkResult) {
+function putLink(record: Link, callback: LinkDetailResult) {
   memoryDb[record.linkId] = record;
   callback(undefined, record);
 }
