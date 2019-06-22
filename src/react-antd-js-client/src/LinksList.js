@@ -14,7 +14,7 @@ class LinksList extends React.PureComponent {
             key: 'url',
             render: text => <a href={text}>{text}</a>,
         },
-        ];
+    ];
 
     render() {
         const {
