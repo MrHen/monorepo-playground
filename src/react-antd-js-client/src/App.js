@@ -8,32 +8,32 @@ import './App.css';
 import 'antd/dist/antd.css';
 
 class App extends React.PureComponent {
-  state = {
-    links: null,
-  };
+    state = {
+        links: null,
+    };
 
-  componentDidMount = async () => {
-    const response = await getList();
-    this.setState({
-      links: _.get(response, 'results'),
-    });
-  }
+    componentDidMount = async () => {
+        const response = await getList();
+        this.setState({
+            links: _.get(response, 'results'),
+        });
+    }
 
-  render() {
-    const {
-      state: {
-        links,
-      },
-    } = this;
+    render() {
+        const {
+            state: {
+                links,
+            },
+        } = this;
 
-    return (
-      <div className="App">
-        <header className="App-header">
-          <LinksList data={links} />
-        </header>
-      </div>
-    );
-  }
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <LinksList data={links} />
+                </header>
+            </div>
+        );
+    }
 }
 
 export default App;
