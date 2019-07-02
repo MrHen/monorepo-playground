@@ -30,6 +30,13 @@ docker-compose run --rm e2e
 
 ### react-antd-js-client
 
+#### Quickstart
+
+* `docker-compose up -d react-antd-js-client`
+* Visit `http://0.0.0.0:3000/`
+
+#### Technology
+
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/javascript)
 * [React](https://reactjs.org/)
 * [Create React App](https://github.com/facebook/create-react-app)

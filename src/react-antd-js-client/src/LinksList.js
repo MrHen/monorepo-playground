@@ -12,7 +12,9 @@ class LinksList extends React.PureComponent {
             title: 'Url',
             dataIndex: 'url',
             key: 'url',
-            render: text => <a href={text}>{text}</a>,
+            render: (text) => {
+                return (<a href={text}>{text}</a>);
+            },
         },
     ];
 
