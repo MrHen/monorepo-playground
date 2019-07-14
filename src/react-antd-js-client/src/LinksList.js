@@ -1,26 +1,29 @@
-import React from 'react';
-import { Table } from 'antd';
+// eslint-disable-next-line unicorn/filename-case
+import React from "react";
+import {
+    Table,
+} from "antd";
 
 class LinksList extends React.PureComponent {
     static columns = [
         {
-            title: 'LinkId',
-            dataIndex: 'linkId',
-            key: 'linkId',
+            "dataIndex": "linkId",
+            "key": "linkId",
+            "title": "LinkId",
         },
         {
-            title: 'Url',
-            dataIndex: 'url',
-            key: 'url',
-            render: (text) => {
+            "dataIndex": "url",
+            "key": "url",
+            "render": (text) => {
                 return (<a href={text}>{text}</a>);
             },
+            "title": "Url",
         },
     ];
 
     render() {
         const {
-            props: {
+            "props": {
                 data,
             },
         } = this;

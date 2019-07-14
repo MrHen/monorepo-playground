@@ -1,77 +1,97 @@
-import React from 'react';
-import { Table, Divider, Tag } from 'antd';
+// eslint-disable-next-line unicorn/filename-case
+import React from "react";
+import {
+    Table,
+    Divider,
+    Tag,
+} from "antd";
 
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: text => <a href="javascript:;">{text}</a>,
+        "dataIndex": "name",
+        "key": "name",
+        "render": (text) => {
+            return <a href="javascript:;">{text}</a>;
+        },
+        "title": "Name",
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
+        "dataIndex": "age",
+        "key": "age",
+        "title": "Age",
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
+        "dataIndex": "address",
+        "key": "address",
+        "title": "Address",
     },
     {
-        title: 'Tags',
-        key: 'tags',
-        dataIndex: 'tags',
-        render: tags => (
-            <span>
-                {tags.map(tag => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'loser') {
-                        color = 'volcano';
-                    }
-                    return (
-                        <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
-                        </Tag>
-                    );
-                })}
-            </span>
-        ),
+        "dataIndex": "tags",
+        "key": "tags",
+        "render": (tags) => {
+            return (
+                <span>
+                    {tags.map(tag => {
+                        let color = tag.length > 5 ? "geekblue" : "green";
+                        if (tag === "loser") {
+                            color = "volcano";
+                        }
+                        return (
+                            <Tag color={color} key={tag}>
+                                {tag.toUpperCase()}
+                            </Tag>
+                        );
+                    })}
+                </span>
+            )
+        },
+        "title": "Tags",
     },
     {
-        title: 'Action',
-        key: 'action',
-        render: (text, record) => (
-            <span>
-                <a href="javascript:;">Invite {record.name}</a>
-                <Divider type="vertical" />
-                <a href="javascript:;">Delete</a>
-            </span>
-        ),
+        "key": "action",
+        "render": (
+            text,
+            record,
+        ) => {
+            return (
+                <span>
+                    <a href="javascript:;">Invite {record.name}</a>
+                    <Divider type="vertical" />
+                    <a href="javascript:;">Delete</a>
+                </span>
+            )
+        },
+        "title": "Action",
     },
 ];
 
 const data = [
     {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
+        "address": "New York No. 1 Lake Park",
+        // eslint-disable-next-line no-magic-numbers
+        "age": 32,
+        "key": "1",
+        "name": "John Brown",
+        "tags": ["nice", "developer"],
     },
     {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
+        "address": "London No. 1 Lake Park",
+        // eslint-disable-next-line no-magic-numbers
+        "age": 42,
+        "key": "2",
+        "name": "Jim Green",
+        "tags": ["loser"],
     },
     {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
+        "address": "Sidney No. 1 Lake Park",
+        // eslint-disable-next-line no-magic-numbers
+        "age": 32,
+        "key": "3",
+        "name": "Joe Black",
+        "tags": [
+            "cool",
+            "teacher",
+        ],
     },
 ];
 

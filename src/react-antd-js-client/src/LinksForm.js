@@ -1,22 +1,31 @@
-import React from 'react';
-import { Form, Icon, Input, Button } from 'antd';
-function hasErrors(fieldsError) {
-    return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
+// eslint-disable-next-line unicorn/filename-case
+import React from "react";
+import {
+    Button,
+    Form,
+    Icon,
+    Input,
+} from "antd";
+
+const hasErrors = function hasErrors(fieldsError) {
+    return Object.keys(fieldsError).some((field) => {
+        return fieldsError[field];
+    });
+};
 
 class HorizontalLoginForm extends React.Component {
     componentDidMount() {
         this.props.form.validateFields();
     }
 
-    handleSubmit = e => {
+    handleSubmit = (event) => {
         const {
-            props: {
+            "props": {
                 handleCreateLink,
             },
         } = this;
 
-        e.preventDefault();
+        event.preventDefault();
 
         this.props.form.validateFields((err, values) => {
             if (err) {
@@ -27,8 +36,8 @@ class HorizontalLoginForm extends React.Component {
 
     render() {
         const {
-            props: {
-                form: {
+            "props": {
+                "form": {
                     getFieldDecorator,
                     getFieldsError,
                     getFieldError,
@@ -37,7 +46,7 @@ class HorizontalLoginForm extends React.Component {
             },
         } = this;
 
-        const usernameError = isFieldTouched('username') && getFieldError('username');
+        const usernameError = isFieldTouched("username") && getFieldError("username");
 
         return (
             <Form
@@ -45,36 +54,38 @@ class HorizontalLoginForm extends React.Component {
                 onSubmit={this.handleSubmit}
             >
                 <Form.Item
-                    validateStatus={usernameError ? 'error' : ''}
-                    help={usernameError || ''}
+                    help={usernameError || ""}
+                    validateStatus={usernameError ? "error" : ""}
                 >
-                    {getFieldDecorator('username', {
-                        rules: [
-                            {
-                                required: true,
-                                message: 'Enter a valid URL',
-                            }
-                        ],
-                    })(
+                    {getFieldDecorator(
+                        "username", {
+                            "rules": [
+                                {
+                                    "required": true,
+                                    "message": "Enter a valid URL",
+                                },
+                            ],
+                        },
+                    )((
                         <Input
+                            placeholder="Link"
                             prefix={(
                                 <Icon
-                                    type="link"
                                     style={{
-                                        color: 'rgba(0,0,0,.25)',
+                                        "color": "rgba(0,0,0,.25)",
                                     }}
+                                    type="link"
                                 />
                             )}
-                            placeholder="Link"
-                        />,
-                    )}
+                        />
+                    ))}
                 </Form.Item>
 
                 <Form.Item>
                     <Button
-                        type="primary"
-                        htmlType="submit"
                         disabled={hasErrors(getFieldsError())}
+                        htmlType="submit"
+                        type="primary"
                     >
                         Create
                     </Button>
@@ -84,6 +95,8 @@ class HorizontalLoginForm extends React.Component {
     }
 }
 
-const LinksForm = Form.create({ name: 'horizontal_login' })(HorizontalLoginForm);
+const LinksForm = Form.create({
+    "name": "horizontal_login",
+})(HorizontalLoginForm);
 
 export default LinksForm;

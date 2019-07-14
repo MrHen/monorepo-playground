@@ -1,0 +1,34 @@
+{
+  "name": "monorepo-playground",
+  "version": "0.0.0",
+  "description": "Playground for setting up different webservers using a docker monorepo",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-plugin-babel": "^5.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1",
+    "eslint-config-mrhen": "^1.0.3",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.14.2",
+    "eslint-plugin-unicorn": "^9.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "eslintConfig": {
+    "extends": "mrhen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrHen/monorepo-playground.git"
+  },
+  "author": "Adam Babcock",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrHen/monorepo-playground/issues"
+  },
+  "homepage": "https://github.com/MrHen/monorepo-playground#readme"
+}

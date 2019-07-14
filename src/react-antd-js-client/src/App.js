@@ -1,35 +1,43 @@
-import _ from 'lodash';
-import React from 'react';
-import { Spin } from 'antd';
-import { getList } from './links';
-import LinksList from './LinksList';
-import LinksForm from './LinksForm';
-import './App.css';
-import 'antd/dist/antd.css';
+// eslint-disable-next-line unicorn/filename-case
+import _ from "lodash";
+import React from "react";
+import {
+    Spin,
+} from "antd";
+import {
+    getList,
+} from "./links";
+import LinksList from "./LinksList";
+import LinksForm from "./LinksForm";
+import "./App.css";
+import "antd/dist/antd.css";
 
 class App extends React.PureComponent {
     state = {
-        loading: true,
-        links: null,
+        "links": null,
+        "loading": true,
     };
 
     componentDidMount = async () => {
         const response = await getList();
 
+        // eslint-disable-next-line react/no-did-mount-set-state
         this.setState({
-            loading: false,
-            links: _.get(response, 'results'),
+            "links": _.get(response, "results"),
+            "loading": false,
         });
-    }
+    };
 
     handleCreateLink = (values) => {
-        console.log({values});
-    }
+        console.log({
+            values,
+        });
+    };
 
     render() {
         const {
             handleCreateLink,
-            state: {
+            "state": {
                 loading,
                 links,
             },
