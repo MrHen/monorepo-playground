@@ -15,19 +15,26 @@ const hasErrors = function hasErrors(fieldsError) {
 
 class HorizontalLoginForm extends React.Component {
     componentDidMount() {
-        this.props.form.validateFields();
+        const {
+            "props": {
+                form,
+            },
+        } = this;
+
+        form.validateFields();
     }
 
     handleSubmit = (event) => {
         const {
             "props": {
                 handleCreateLink,
+                form,
             },
         } = this;
 
         event.preventDefault();
 
-        this.props.form.validateFields((err, values) => {
+        form.validateFields((err, values) => {
             if (err) {
                 handleCreateLink(values);
             }
@@ -61,8 +68,8 @@ class HorizontalLoginForm extends React.Component {
                         "username", {
                             "rules": [
                                 {
-                                    "required": true,
                                     "message": "Enter a valid URL",
+                                    "required": true,
                                 },
                             ],
                         },

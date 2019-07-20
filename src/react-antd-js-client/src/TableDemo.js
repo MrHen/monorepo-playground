@@ -28,6 +28,7 @@ const columns = [
     {
         "dataIndex": "tags",
         "key": "tags",
+        // eslint-disable-next-line react/no-multi-comp
         "render": (tags) => {
             return (
                 <span>
@@ -49,6 +50,7 @@ const columns = [
     },
     {
         "key": "action",
+        // eslint-disable-next-line react/no-multi-comp
         "render": (
             text,
             record,
@@ -72,7 +74,10 @@ const data = [
         "age": 32,
         "key": "1",
         "name": "John Brown",
-        "tags": ["nice", "developer"],
+        "tags": [
+            "nice",
+            "developer",
+        ],
     },
     {
         "address": "London No. 1 Lake Park",
@@ -95,16 +100,14 @@ const data = [
     },
 ];
 
-class TableDemo extends React.PureComponent {
-    render() {
-        return (
-            <Table
-                className="hen-table-demo"
-                columns={columns}
-                dataSource={data}
-            />
-        );
-    }
+const TableDemo = () => {
+    return (
+        <Table
+            className="hen-table-demo"
+            columns={columns}
+            dataSource={data}
+        />
+    )
 }
 
 export default TableDemo;
