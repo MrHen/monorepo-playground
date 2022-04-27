@@ -16,7 +16,7 @@
     "@types/lodash": "^4.14.80",
     "@types/mocha": "^2.2.43",
     "@types/superagent": "^3.5.6",
-    "async": "^2.5.0",
+    "async": "^2.6.4",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
     "superagent": "^3.7.0",
